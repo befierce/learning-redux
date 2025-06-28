@@ -1,11 +1,9 @@
 import classes from './Counter.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 const Counter = () => {
   const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
   const counter = useSelector(state => state.counter);//acts as subscription to the redux store
-
+  const show = useSelector(state => state.showCounter)
   const increaseHandler = ()=>{
     dispatch({type:'increase', amount:5})//this is the custom handler we can also take different 
     // values from the input without hardcoding the reducer function
@@ -21,12 +19,7 @@ const Counter = () => {
   }
 
   const toggleCounterHandler = () => {
-    if(show === true){
-      setShow(false);
-    }
-    if(show === false){
-      setShow(true)
-    }
+    dispatch({type: 'toggle'})
   };
 
   return (
