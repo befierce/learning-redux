@@ -4,6 +4,11 @@ const Counter = () => {
   const dispatch = useDispatch();
   const counter = useSelector(state => state.counter);//acts as subscription to the redux store
 
+  const increaseHandler = ()=>{
+    dispatch({type:'increase', amount:5})//this is the custom handler we can also take different 
+    // values from the input without hardcoding the reducer function
+  }
+
   const incrementHandler = ()=>{
     console.log("clicked")
     dispatch({type: 'increment'})
@@ -25,9 +30,15 @@ const Counter = () => {
         <button onClick={incrementHandler}>
           increment
         </button>
+
+        <button onClick={increaseHandler}>
+          increment by 5
+        </button>
         <button onClick={decrementHandler}>
           decrement
         </button>
+        
+        
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>
